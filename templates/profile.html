@@ -12,10 +12,10 @@
 
 body{
 
-//background-color: #0F979F;
+background-color: #031030;
 
-background-image: url("http://wallpapercave.com/wp/rk1vScB.jpg");
-image-orientation: center;
+<!--background-image: url("http://wallpapercave.com/wp/rk1vScB.jpg");-->
+<!--image-orientation: center;-->
 }
 
 
@@ -58,7 +58,7 @@ select.ddl{
 }
 
 .textbox {
- background-color:#A11713;
+ background-color:#DADCE0;
  text-decoration-color: #D6CF06;
     -moz-border-radius-bottomright: 30px;
     -webkit-border-bottom-right-radius: 30px;
@@ -89,76 +89,105 @@ select.ddl{
 
 <body >
 
-<center/><h1 style="color:#911600"> Hii... Welcome to Ubuntu Installation!</h1>
+<center/><h1 style="color:#747577"> Hii... Welcome to Ubuntu Installation!</h1>
 
 <form  action = "http://localhost:5000/result" method="post">
-    <select name ="lang" class="dd1" id="language"   onChange="myNewFunction(this);" required>
-       <option value="" disabled selected>Select your language</option>
-      <option name="Arabic" value="Arabic">Arabic</option>
-      <option value="Bengali">Bengali</option>
-      <option value="English">English</option>
-      <option value="Galego">Galego</option>
+    <!--<select name ="lang" value="{{ request.form.lang }}" class="dd1" id="language"   onChange="myNewFunction(this);" required>-->
+       <!--<option value="" disabled selected>Select your language</option>-->
+      <!--<option name="Arabic" value="Arabic">Arabic</option>-->
+      <!--<option value="Bengali">Bengali</option>-->
+      <!--<option value="English">English</option>-->
+      <!--<option value="Galego">Galego</option>-->
 
-    </select>
-
-
-<select name ="location" class="dd1" id = "location" onChange="myNewFunction(this);" required>
-    <option value="" disabled selected>Geographic Location</option>
-  <option value="Austria">Austria</option>
-  <option value="India">India</option>
-  <option value="Canada">Canada</option>
-  <option value="Germany">Germany</option>
-    <option value="India">India</option>
-</select>
+    <!--</select>-->
 
 
-
-        <select  name = "time_zone" class="select-color" id="time zone" onChange="myNewFunction(this);" required>
-                     <option value="" disabled selected>Time Zone</option>
-                    <option value="Asia/Kolkata">Asia/Kolkata</option>
-                    <option value="USA">USA</option>
-                    <option value="Canada">Canada</option>
-                    <option value="Germany">Germany</option>
-        </select>
+<!--<select name ="location" value="{{ request.form.location }}" class="dd1" id = "location" onChange="myNewFunction(this);" required>-->
+    <!--<option value="" disabled selected>Geographic Location</option>-->
+  <!--<option value="Austria">Austria</option>-->
+  <!--<option value="India">India</option>-->
+  <!--<option value="Canada">Canada</option>-->
+  <!--<option value="Germany">Germany</option>-->
+    <!--<option value="India">India</option>-->
+<!--</select>-->
 
 
 
+        <!--<select  name = "time_zone" value="{{ request.form.time_zone }}" class="select-color" id="time zone" onChange="myNewFunction(this);" required>-->
+                     <!--<option value="" disabled selected>Time Zone</option>-->
+                    <!--<option value="Asia/Kolkata">Asia/Kolkata</option>-->
+                    <!--<option value="USA">USA</option>-->
+                    <!--<option value="Canada">Canada</option>-->
+                    <!--<option value="Germany">Germany</option>-->
+        <!--</select>-->
 
-<select name ="proxy" class="dd1" id="proxy"   onChange="myNewFunction(this);" required>
-            <option value="" disabled selected>Set up Proxy?</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
 
-</select>
 
-      <select name ="partition" class="dd1" id ="partition" onChange="myNewFunction(this);" required>
 
-                <option value="" disabled selected>Disk Partition  </option>
-                <option value="Use Entire Disk">Use Entire Disk</option>
-                <option value="Manual">Manual</option>
+<!--<select name ="proxy" value="{{ request.form.proxy}}" class="dd1" id="proxy"   onChange="myNewFunction(this);" required>-->
+            <!--<option value="" disabled selected>Set up Proxy?</option>-->
+            <!--<option value="Yes">Yes</option>-->
+            <!--<option value="No">No</option>-->
 
-      </select>
+<!--</select>-->
+
+      <!--<select name ="partition" value="{{ request.form.partition}}" class="dd1" id ="partition" onChange="myNewFunction(this);" required>-->
+
+                <!--<option value="" disabled selected>Disk Partition  </option>-->
+                <!--<option value="Use Entire Disk">Use Entire Disk</option>-->
+                <!--<option value="Manual">Manual</option>-->
+
+      <!--</select>-->
 
 <div class="user">
-  <input name ="hostname" class="textbox" type="text" placeholder="HostName" required>
+  <input name ="hostname" class="textbox" type="text" placeholder="HostName" value="{{ request.form.hostname }}" required>
 <br><br>
-<input name="full_name" class="textbox" type="text" placeholder="Full name for the new user" required>
+
+    <input name="full_name" class="textbox" type="text" placeholder="Full name for the new user" value="{{ request.form.full_name }}" required>
+    <br><br>
+
+<input name="user_name" class="textbox" type="text" placeholder="User Name" value="{{ request.form.user_name }}" required>
 <br><br>
-<input name="ps" class="textbox" type="password" placeholder="Password" required>
+<input name="ps" id ="pw" class="textbox" type="password" placeholder="Password"  required>
 <br><br>
-<input name="confirm_pw" class="textbox" type="password" placeholder="Confirm Password" required>
+<input name="confirm_pw" id ="confirm_pw" class="textbox" type="password" placeholder="Confirm Password" required>
 
 
 </div>
 
-<p id="demo">Click the button to change the text in this paragraph.</p>
 
-<button class ="button-css" type="submit" name="action">Install</button>
+
+<button class ="button-css" type="submit" name="action" onclick="func()" >Install</button>
+
+
+    {% if error %}
+        <p style="color:white;font-size: 40px"> {{error}} </p>
+    {% endif %}
 <!--<button class="button-css" >Install Ubuntu</button>-->
-
 <!--<button  class="button-css">Read File</button>-->
 
 </form>
+
+<script>
+
+    function func()
+    {
+       var pw = document.getElementById("pw").value;
+       var pw_confirm = document.getElementById("confirm_pw").value;
+
+            if(pw != pw_confirm)
+            {
+                    exit();
+                    alert("passwords doesn't match!");
+
+            }
+
+
+
+    }
+
+
+</script>
 
 
 
